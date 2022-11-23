@@ -18,3 +18,6 @@ create table GasPrice(USD_price VARCHAR(30) NOT NULL, date VARCHAR(30) NOT NULL,
 INSERT INTO GasPrice(USD_price,date) VALUES("17","24/11/2022:01");
 select * from GasPrice;
 EOF
+
+sqlite3 test.db  "create table GasPrice(USD_price VARCHAR(30) NOT NULL, date VARCHAR(30) NOT NULL, PRIMARY KEY (date));"
+sqlite3 test.db  "INSERT INTO GasPrice(USD_price,date) VALUES("17","24/11/2022:01");"

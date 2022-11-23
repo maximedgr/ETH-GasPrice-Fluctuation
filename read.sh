@@ -1,4 +1,2 @@
 #!/bin/bash
-sudo mysql test.db <<EOF
-select * from GasPrice;
-EOF
+sqlite3 test.db  "select * from GasPrice;"
