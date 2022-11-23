@@ -9,4 +9,12 @@ echo $(cat api_data.txt | grep -oP '(?<="SafeGasPrice":").*?(?=")')
 
 sudo mysql
 USE OS_Project;
-INSERT INTO GasPrice(USD_price,date) VALUES("16","23/11/2022");
+INSERT INTO GasPrice(USD_price,date) VALUES("17","24/11/2022:01");
+EOF
+
+
+sudo mysql test.db <<EOF
+create table GasPrice(USD_price VARCHAR(30) NOT NULL, date VARCHAR(30) NOT NULL, PRIMARY KEY (date));
+INSERT INTO GasPrice(USD_price,date) VALUES("17","24/11/2022:01");
+select * from GasPrice;
+EOF
