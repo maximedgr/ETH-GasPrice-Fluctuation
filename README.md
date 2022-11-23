@@ -1,5 +1,5 @@
-# Matic|Polygon - Price volatility alert
-Application alerting a user via Telegram message and web visualization of abnormal variations in the price of $MATIC.
+# Ethereum - Gas Price Alert & Analysis 
+Application alerting a user via Telegram message and web visualization of abnormal variations in the ETH GasPrice datas.
 
-# Coingecko API :
-[API : $MATIC on Binance](https://api.coingecko.com/api/v3/coins/matic-network/tickers?exchange_ids=binance)
+# Etherscan API :
+[Gas Price API](https://api.etherscan.io/api?module=gastracker&action=gasoracle)
