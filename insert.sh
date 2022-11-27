@@ -1,2 +1,10 @@
 #!/bin/bash
-sqlite3 test.db  "INSERT INTO GasPrice(USD_price,date) VALUES('17','24/11/2022');"
+gasPrice= echo $(cat api_data.txt | grep -oP '(?<="SafeGasPrice":").*?(?=")')
+lastBlock= echo $(cat api_data.txt | grep -oP '(?<="LastBlock":").*?(?=")')
+date_= echo $(date +"%D %T")
+
+#sqlite3 gas_tab.db  "INSERT INTO GasPrice(USD_price,date) VALUES($GasPrice,$Date_,$LastBlock);"
+
+echo $gasPrice
+
+
