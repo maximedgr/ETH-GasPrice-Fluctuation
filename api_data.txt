@@ -1,1 +1,1 @@
-{"status":"1","message":"OK","result":{"LastBlock":"16062656","SafeGasPrice":"10","ProposeGasPrice":"12","FastGasPrice":"12","suggestBaseFee":"9.614622581","gasUsedRatio":"0.451579633333333,0.496209833333333,0.580937033333333,0.3075678,0.602562066666667"}}
+{"status":"1","message":"OK","result":{"LastBlock":"16063828","SafeGasPrice":"10","ProposeGasPrice":"10","FastGasPrice":"10","suggestBaseFee":"9.496145694","gasUsedRatio":"0.265680466666667,0.385596933333333,0.553099633333333,0.858385766666667,0.3941322"}}
