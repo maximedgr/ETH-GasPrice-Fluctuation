@@ -1,2 +1,2 @@
 #!/bin/bash
-sqlite3 test.db  "select * from GasPrice;"
+sqlite3 gas_tab.db  "select * from GasPrice;"
