@@ -16,9 +16,19 @@ echo "Std : "$std
 echo "IC : "
 echo "["$icd" ; "$icu"]"
 
+
 outsidevalue=$(sqlite3 gas_tab.db "SELECT GasPrice.USD_price FROM GasPrice WHERE GasPrice.blocktime=( SELECT MAX(GasPrice.blocktime) FROM GasPrice WHERE GasPrice.USD_price NOT BETWEEN $icd AND $icu) ;")
 outsidevalueTime=$(sqlite3 gas_tab.db "SELECT GasPrice.blocktime FROM GasPrice WHERE GasPrice.blocktime=( SELECT MAX(GasPrice.blocktime) FROM GasPrice WHERE GasPrice.USD_price NOT BETWEEN $icd AND $icu) ;")
 outsidevalueDate=$(sqlite3 gas_tab.db "SELECT GasPrice.date FROM GasPrice WHERE GasPrice.blocktime=( SELECT MAX(GasPrice.blocktime) FROM GasPrice WHERE GasPrice.USD_price NOT BETWEEN $icd AND $icu) ;")
+
+last_ano=$(cat last_anomalie.txt)
+
+if [[ $last_ano == "" ]];
+then
+echo "c'est vide"
+else
+echo "c'est pas vide"
+fi
 
 if [[ $outsidevalue != "" ]];
 then
