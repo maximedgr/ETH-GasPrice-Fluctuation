@@ -6,3 +6,4 @@ echo "LastBlock :" $(cat api_data.txt | grep -oP '(?<="LastBlock":").*?(?=")')
 echo "Date : " $(date '+%Y-%m-%d %H:%M:%S')
 
 ./insert.sh
+./ic.sh
