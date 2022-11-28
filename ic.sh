@@ -33,7 +33,8 @@ echo "Anomalie detected : "$outsidevalue" | Blocktime : "$outsidevalueTime " | D
 sqlite3 gas_tab.db  "INSERT INTO Anomalie(USD_price,date,blocktime) VALUES($outsidevalue,'$outsidevalueDate',$outsidevalueTime);"
 echo "Done -> INSERT INTO Anomalie(USD_price,date,blocktime) VALUES($outsidevalue,$outsidevalueDate,$outsidevalueTime);"
 else 
-echo "No Anomalie detected."
+last_ano_value=$(sqlite3 gas_tab.db "SELECT Anomalie.USD_price FROM Anomalie WHERE Anomalie.blocktime == $last_ano ;")
+echo "No new Anomalie detected last was : Value :  "$last_ano_value" | From blocktime : "$last_ano
 fi
 fi
 
