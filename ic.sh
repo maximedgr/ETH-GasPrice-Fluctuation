@@ -29,6 +29,7 @@ echo $outsidevalueTime >> last_anomalie.txt
 else
 if [[ $last_ano != $outsidevalueTime &&  $outsidevalue != "" ]];
 then
+echo "last_ano : "$last_ano" outsidevalueTime : "$outsidevalueTime"\n"
 echo "Anomalie detected : "$outsidevalue" | Blocktime : "$outsidevalueTime " | Date : "$outsidevalueDate
 sqlite3 gas_tab.db  "INSERT INTO Anomalie(USD_price,date,blocktime) VALUES($outsidevalue,'$outsidevalueDate',$outsidevalueTime);"
 echo "Done -> INSERT INTO Anomalie(USD_price,date,blocktime) VALUES($outsidevalue,$outsidevalueDate,$outsidevalueTime);"
