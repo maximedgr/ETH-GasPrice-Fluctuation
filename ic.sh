@@ -22,15 +22,12 @@ outsidevalueTime=$(sqlite3 gas_tab.db "SELECT GasPrice.blocktime FROM GasPrice W
 outsidevalueDate=$(sqlite3 gas_tab.db "SELECT GasPrice.date FROM GasPrice WHERE GasPrice.blocktime=( SELECT MAX(GasPrice.blocktime) FROM GasPrice WHERE GasPrice.USD_price NOT BETWEEN $icd AND $icu) ;")
 
 last_ano=$(cat last_anomalie.txt)
-
-if [[ $last_ano == "" ]];
+#On store juste le blocktime de la dernière anomalie et on compare si c'est la même ou une nouvelle de détectée
+if [[ $last_ano == "" ]]; #Si fichier vide
 then
-echo "c'est vide"
+echo $outsidevalueTime >> last_anomalie.txt
 else
-echo "c'est pas vide"
-fi
-
-if [[ $outsidevalue != "" ]];
+if [[ $last_ano != $outsidevalueTime &&  $outsidevalue != "" ]];
 then
 echo "Anomalie detected : "$outsidevalue" | Blocktime : "$outsidevalueTime " | Date : "$outsidevalueDate
 sqlite3 gas_tab.db  "INSERT INTO Anomalie(USD_price,date,blocktime) VALUES($outsidevalue,'$outsidevalueDate',$outsidevalueTime);"
@@ -38,15 +35,8 @@ echo "Done -> INSERT INTO Anomalie(USD_price,date,blocktime) VALUES($outsidevalu
 else 
 echo "No Anomalie detected."
 fi
-
-# if [[ $outsidevalue >=~ $pat1 ]];
-# then
-# sqlite3 gas_tab.db  "INSERT INTO Anomalie(USD_price,date,blocktime) VALUES($outsidevalue,$outsidevalueDate,$outsidevalueTime);"
-# echo "Done -> INSERT INTO Anomalie(USD_price,date,blocktime) VALUES($outsidevalue,$outsidevalueDate,$outsidevalueTime);"
-# fi 
+fi
 
 
-# Variance : 
-# SELECT SUM((GasPrice.USD_price-(SELECT AVG(GasPrice.USD_price) FROM GasPrice))*(GasPrice.USD_price-(SELECT AVG(GasPrice.USD_price) FROM GasPrice)) ) / (COUNT(GasPrice.USD_price)-1) AS Variance FROM GasPrice;
 
 # Toute les heures on va réduire la taille de l'échantillon pour avoir seulement ceux de la dernière heure et ainsi opérer dessus
