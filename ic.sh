@@ -41,9 +41,63 @@ echo "Done -> INSERT INTO Anomalie(USD_price,date,blocktime) VALUES($outsidevalu
 echo $outsidevalueTime > last_anomalie.txt
 else 
 echo "No new Anomalie detected last was : Value :  "$last_ano_value" | From blocktime : "$last_ano
+$outsidevalue=$last_ano_value
 fi
 fi
 
+# Front update
+
+index ="
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Website</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+  </head>
+  <body>
+    <main>
+      <h1>ETH Gas Price anomalie</h1>
+    </main>
+    <h3>Click on the tabs below:</h3>
+    <div class="tab">
+      <button class="tablinks" onclick="clickHandle(event, 'Anomalie')">Anomalie</button>
+    </div>
+  
+    <div id="Anomalie" class="tabcontent">
+      <h3>$Anomalie</h3>
+  </div>
+  
+  <script>
+  function clickHandle(evt, avtName) {
+    let i, tabcontent, tablinks;
+  
+    // This is to clear the previous clicked content.
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+  
+    // Set the tab to be "active".
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+  
+    // Display the clicked tab and set it to active.
+    document.getElementById(avtName).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
+  </script>
+
+   </body>
+</html>
+"
+
+index > index.html
 
 
 # Toute les heures on va réduire la taille de l'échantillon pour avoir seulement ceux de la dernière heure et ainsi opérer dessus
