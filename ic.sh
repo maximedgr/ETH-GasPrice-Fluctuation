@@ -97,7 +97,7 @@ index ="
 </html>
 "
 
-index > index.html
+echo $index > index.html
 
 
 # Toute les heures on va réduire la taille de l'échantillon pour avoir seulement ceux de la dernière heure et ainsi opérer dessus
