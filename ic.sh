@@ -31,7 +31,7 @@ if [[ $last_ano == "" ]]; #Si fichier vide
 then
 echo "No previous anomalie"
 echo $outsidevalueTime > last_anomalie.txt
-anomalie_front = outsidevalue
+$anomalie_front=$outsidevalue
 else
 if [[ $last_ano_value != $outsidevalue &&  $outsidevalue != "" ]];
 then
@@ -41,10 +41,10 @@ echo "Anomalie detected : "$outsidevalue" | Blocktime : "$outsidevalueTime " | D
 sqlite3 gas_tab.db  "INSERT INTO Anomalie(USD_price,date,blocktime) VALUES($outsidevalue,'$outsidevalueDate',$outsidevalueTime);"
 echo "Done -> INSERT INTO Anomalie(USD_price,date,blocktime) VALUES($outsidevalue,$outsidevalueDate,$outsidevalueTime);"
 echo $outsidevalueTime > last_anomalie.txt
-anomalie_front = outsidevalue
+$anomalie_front=$outsidevalue
 else 
 echo "No new Anomalie detected last was : Value :  "$last_ano_value" | From blocktime : "$last_ano
-outsidevalue=last_ano_value
+$anomalie_front=$last_ano_value
 fi
 fi
 
