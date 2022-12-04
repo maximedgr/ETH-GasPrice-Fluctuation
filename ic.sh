@@ -67,7 +67,7 @@ sudo cat > /var/www/eth-gas-price-web/index.html <<EOF
     <main>
       <h1>ETH Gas Price anomalie</h1>
     </main>
-    <h3>Click on the tab below:</h3>
+    <h3>Click on the tabs below:</h3>
     <div class="tab">
       <button class="tablinks" onclick="clickHandle(event, 'Anomalie')">Anomalie</button>
     </div>
@@ -83,7 +83,7 @@ sudo cat > /var/www/eth-gas-price-web/index.html <<EOF
     <th>Date</th>
   </tr>
   <tr>
-    <td>$last_ano_value</td>
+    <td>$last_ano_value/td>
     <td>$last_ano</td>
     <td>$last_ano_date</td>
   </tr>
