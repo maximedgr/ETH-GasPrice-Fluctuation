@@ -25,6 +25,8 @@ outsidevalueDate=$(sqlite3 gas_tab.db "SELECT GasPrice.date FROM GasPrice WHERE 
 #récupère la dernière anomalie
 last_ano=$(cat last_anomalie.txt)
 last_ano_value=$(sqlite3 gas_tab.db "SELECT Anomalie.USD_price FROM Anomalie WHERE Anomalie.blocktime == $last_ano ;")
+last_ano_date=$(sqlite3 gas_tab.db "SELECT Anomalie.date FROM Anomalie WHERE Anomalie.blocktime == $last_ano ;")
+
 
 #On store juste le blocktime de la dernière anomalie et on compare si c'est la même ou une nouvelle de détectée
 if [[ $last_ano == "" ]]; #Si fichier vide
@@ -50,7 +52,7 @@ fi
 
 # Front update
 
-cat > ~/var/www/eth-gas-price-web/index.html <<EOF
+sudo cat > /var/www/eth-gas-price-web/index.html <<EOF
 <!DOCTYPE html>
 <html lang="fr">
   <head>
@@ -71,8 +73,21 @@ cat > ~/var/www/eth-gas-price-web/index.html <<EOF
     </div>
   
     <div id="Anomalie" class="tabcontent">
-      <h3>$anomalie_front</h3>
+      <h3>$anomalie_front Gwei</h3>
   </div>
+  <h2>Anomalie history</h2>
+  <table>
+  <tr>
+    <th>Value in Gwei</th>
+    <th>TimeBlock</th>
+    <th>Date</th>
+  </tr>
+  <tr>
+    <td>$last_ano_value/td>
+    <td>$last_ano</td>
+    <td>$last_ano_date</td>
+  </tr>
+</table>
   
   <script>
   function clickHandle(evt, avtName) {
@@ -102,3 +117,5 @@ EOF
 
 
 # Toute les heures on va réduire la taille de l'échantillon pour avoir seulement ceux de la dernière heure et ainsi opérer dessus
+
+
