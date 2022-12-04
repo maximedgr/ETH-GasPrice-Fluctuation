@@ -75,15 +75,6 @@ sudo cat > /var/www/eth-gas-price-web/index.html <<EOF
     <div id="Anomalie" class="tabcontent">
       <h3>$anomalie_front Gwei</h3>
   </div>
-  <div>
-    <h3>
-        Normal distribution confidence interval (95%)
-    </h3>
-    <p>[$icd ; $icu]</p>
-    <p>Coeff : $coeff </p>
-    <p>Sample size : $sqrttaille </p>
-    <p>Mean : $mean </p>
-  </div>
   <h2>Anomalie history</h2>
   <table>
   <tr>
