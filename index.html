@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Website</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+  </head>
+  <body>
+    <main>
+      <h1>ETH Gas Price anomalie</h1>
+    </main>
+    <h3>Click on the tab below:</h3>
+    <div class="tab">
+      <button class="tablinks" onclick="clickHandle(event, 'Anomalie')">Anomalie</button>
+    </div>
+  
+    <div id="Anomalie" class="tabcontent">
+      <h3>$anomalie_front Gwei</h3>
+  </div>
+  <div>
+    <h3>
+        Normal distribution confidence interval (95%)
+    </h3>
+    <p>[;]</p>
+    <p>Coeff : </p>
+  </div>
+  <h2>Anomalie history</h2>
+  <table>
+  <tr>
+    <th>Value in Gwei</th>
+    <th>TimeBlock</th>
+    <th>Date</th>
+  </tr>
+  <tr>
+    <td>$last_ano_value</td>
+    <td>$last_ano</td>
+    <td>$last_ano_date</td>
+  </tr>
+</table>
+  
+  <script>
+  function clickHandle(evt, avtName) {
+    let i, tabcontent, tablinks;
+  
+    // This is to clear the previous clicked content.
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+  
+    // Set the tab to be "active".
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+  
+    // Display the clicked tab and set it to active.
+    document.getElementById(avtName).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
+  </script>
+
+   </body>
+</html>

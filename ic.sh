@@ -67,13 +67,22 @@ sudo cat > /var/www/eth-gas-price-web/index.html <<EOF
     <main>
       <h1>ETH Gas Price anomalie</h1>
     </main>
-    <h3>Click on the tabs below:</h3>
+    <h3>Click on the tab below:</h3>
     <div class="tab">
       <button class="tablinks" onclick="clickHandle(event, 'Anomalie')">Anomalie</button>
     </div>
   
     <div id="Anomalie" class="tabcontent">
       <h3>$anomalie_front Gwei</h3>
+  </div>
+  <div>
+    <h3>
+        Normal distribution confidence interval (95%)
+    </h3>
+    <p>[$icd ; $icu]</p>
+    <p>Coeff : $coeff </p>
+    <p>Sample size : $sqrttaille </p>
+    <p>Mean : $mean </p>
   </div>
   <h2>Anomalie history</h2>
   <table>
