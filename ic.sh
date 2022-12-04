@@ -47,6 +47,7 @@ fi
 
 # Front update
 
+cat > index.html <<EOF
 index ="
 <!DOCTYPE html>
 <html lang="fr">
@@ -96,8 +97,7 @@ index ="
    </body>
 </html>
 "
-
-echo $index > index.html
+EOF
 
 
 # Toute les heures on va réduire la taille de l'échantillon pour avoir seulement ceux de la dernière heure et ainsi opérer dessus
