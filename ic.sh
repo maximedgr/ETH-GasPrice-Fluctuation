@@ -50,8 +50,7 @@ fi
 
 # Front update
 
-cat > index.html <<EOF
-index ="
+cat > ~/var/www/eth-gas-price-web/index.html <<EOF
 <!DOCTYPE html>
 <html lang="fr">
   <head>
@@ -99,7 +98,6 @@ index ="
 
    </body>
 </html>
-"
 EOF
 
 
