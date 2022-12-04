@@ -83,7 +83,7 @@ sudo cat > /var/www/eth-gas-price-web/index.html <<EOF
     <th>Date</th>
   </tr>
   <tr>
-    <td>$last_ano_value/td>
+    <td>$last_ano_value</td>
     <td>$last_ano</td>
     <td>$last_ano_date</td>
   </tr>
