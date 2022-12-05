@@ -67,7 +67,7 @@ sudo cat > /var/www/eth-gas-price-web/index.html <<EOF
     <main>
       <h1>ETH Gas Price anomalie</h1>
     </main>
-    <h3>Click on the tab below:</h3>
+    <h3>Click on the tab below to show latest anomalie value :</h3>
     <div class="tab">
       <button class="tablinks" onclick="clickHandle(event, 'Anomalie')">Anomalie</button>
     </div>
@@ -84,7 +84,7 @@ sudo cat > /var/www/eth-gas-price-web/index.html <<EOF
     <p>Sample size : $taille </p>
     <p>Mean : $mean </p>
   </div>
-  <h2>Anomalie history</h2>
+  <h2>Anomalie history (last 10) : </h2>
   <table>
   <tr>
     <th>Value in Gwei</th>
@@ -94,12 +94,8 @@ sudo cat > /var/www/eth-gas-price-web/index.html <<EOF
   
 EOF
 
-tailleano=$(sqlite3 gas_tab.db "SELECT COUNT(*) from Anomalie;")
-echo $tailleano
-
-for i in {0..$tailleano..1}
+for i in {0..10..1}
 do
-  echo $i
   last_ano_value=$(sqlite3 gas_tab.db "SELECT Anomalie.USD_price FROM Anomalie WHERE Anomalie.blocktime=( SELECT MAX(Anomalie.blocktime) FROM Anomalie WHERE Anomalie.blocktime < $last_ano );")
   last_ano_date=$(sqlite3 gas_tab.db "SELECT Anomalie.date FROM Anomalie WHERE Anomalie.blocktime=( SELECT MAX(Anomalie.blocktime) FROM Anomalie WHERE Anomalie.blocktime < $last_ano );")
   last_ano=$(sqlite3 gas_tab.db "SELECT Anomalie.blocktime FROM Anomalie WHERE Anomalie.blocktime=( SELECT MAX(Anomalie.blocktime) FROM Anomalie WHERE Anomalie.blocktime < $last_ano );")
