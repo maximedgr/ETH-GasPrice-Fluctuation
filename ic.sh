@@ -81,7 +81,7 @@ sudo cat > /var/www/eth-gas-price-web/index.html <<EOF
     </h3>
     <p>[$icd ; $icu]</p>
     <p>Coeff : $coeff </p>
-    <p>Sample size : $sqrttaille </p>
+    <p>Sample size : $taille </p>
     <p>Mean : $mean </p>
   </div>
   <h2>Anomalie history</h2>
@@ -97,7 +97,15 @@ sudo cat > /var/www/eth-gas-price-web/index.html <<EOF
     <td>$last_ano_date</td>
   </tr>
 </table>
-  
+EOF
+
+historyano=$(sqlite3 gas_tab.db "SELECT * FROM Anomalie;")
+
+sudo cat >> /var/www/eth-gas-price-web/index.html <<EOF
+  <div>
+  $historyano
+  </div>
+
   <script>
   function clickHandle(evt, avtName) {
     let i, tabcontent, tablinks;
