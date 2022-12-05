@@ -91,20 +91,30 @@ sudo cat > /var/www/eth-gas-price-web/index.html <<EOF
     <th>TimeBlock</th>
     <th>Date</th>
   </tr>
+  
+EOF
+
+tailleano=$(sqlite3 gas_tab.db "SELECT COUNT(*) from Anomalie;")
+
+for i in {1..$tailleano}
+do
+  last_ano_value=$(sqlite3 gas_tab.db "SELECT Anomalie.USD_price FROM Anomalie WHERE Anomalie.blocktime=( SELECT MAX(GasPrice.blocktime) WHERE GasPrice.blocktime < $last_ano );")
+  last_ano_date=$(sqlite3 gas_tab.db "SELECT Anomalie.date FROM Anomalie WHERE Anomalie.blocktime=( SELECT MAX(GasPrice.blocktime) WHERE GasPrice.blocktime < $last_ano );")
+  last_ano_date=$(sqlite3 gas_tab.db "SELECT Anomalie.blocktime FROM Anomalie WHERE Anomalie.blocktime=( SELECT MAX(GasPrice.blocktime) WHERE GasPrice.blocktime < $last_ano );")
+
+  sudo cat >> /var/www/eth-gas-price-web/index.html <<EOF
   <tr>
     <td>$last_ano_value</td>
     <td>$last_ano</td>
     <td>$last_ano_date</td>
   </tr>
-</table>
 EOF
 
-historyano=$(sqlite3 gas_tab.db "SELECT * FROM Anomalie;")
+done
+
 
 sudo cat >> /var/www/eth-gas-price-web/index.html <<EOF
-  <div>
-  $historyano
-  </div>
+</table>
 
   <script>
   function clickHandle(evt, avtName) {
