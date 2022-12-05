@@ -97,7 +97,7 @@ EOF
 tailleano=$(sqlite3 gas_tab.db "SELECT COUNT(*) from Anomalie;")
 echo $tailleano
 
-for i in {0..10..2}
+for i in {0..$tailleano..1}
 do
   echo $i
   last_ano_value=$(sqlite3 gas_tab.db "SELECT Anomalie.USD_price FROM Anomalie WHERE Anomalie.blocktime=( SELECT MAX(Anomalie.blocktime) FROM Anomalie WHERE Anomalie.blocktime < $last_ano );")
