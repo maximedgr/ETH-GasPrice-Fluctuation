@@ -98,9 +98,10 @@ tailleano=$(sqlite3 gas_tab.db "SELECT COUNT(*) from Anomalie;")
 
 for i in {1..$tailleano}
 do
-  last_ano_value=$(sqlite3 gas_tab.db "SELECT Anomalie.USD_price FROM Anomalie WHERE Anomalie.blocktime=( SELECT MAX(Anomalie.blocktime) WHERE Anomalie.blocktime < $last_ano );")
-  last_ano_date=$(sqlite3 gas_tab.db "SELECT Anomalie.date FROM Anomalie WHERE Anomalie.blocktime=( SELECT MAX(Anomalie.blocktime) WHERE Anomalie.blocktime < $last_ano );")
-  last_ano_date=$(sqlite3 gas_tab.db "SELECT Anomalie.blocktime FROM Anomalie WHERE Anomalie.blocktime=( SELECT MAX(Anomalie.blocktime) WHERE Anomalie.blocktime < $last_ano );")
+  echo $i
+  last_ano_value=$(sqlite3 gas_tab.db "SELECT Anomalie.USD_price FROM Anomalie WHERE Anomalie.blocktime=( SELECT MAX(Anomalie.blocktime) FROM Anomalie WHERE Anomalie.blocktime < $last_ano );")
+  last_ano_date=$(sqlite3 gas_tab.db "SELECT Anomalie.date FROM Anomalie WHERE Anomalie.blocktime=( SELECT MAX(Anomalie.blocktime) FROM Anomalie WHERE Anomalie.blocktime < $last_ano );")
+  last_ano=$(sqlite3 gas_tab.db "SELECT Anomalie.blocktime FROM Anomalie WHERE Anomalie.blocktime=( SELECT MAX(Anomalie.blocktime) FROM Anomalie WHERE Anomalie.blocktime < $last_ano );")
 
   sudo cat >> /var/www/eth-gas-price-web/index.html <<EOF
   <tr>
