@@ -1,5 +1,7 @@
 # Ethereum - Gas Price Alert & Analysis 
-Application alerting a user via console and web visualization of abnormal variations in the ETH GasPrice datas.
+Application alerting a user via console and web visualization of abnormal variations in the ETH GasPrice datas.  
+
+In this project we define as "abnormal variations" a current value which is outside an confidence interval of 95%.
 
 You can host it directly on your machine or on a remote server to host your front-end app.
 
