@@ -77,7 +77,7 @@ sudo cat > /var/www/eth-gas-price-web/index.html <<EOF
   </div>
   <div>
     <h3>
-        Normal distribution confidence interval (95%)
+        Confidence interval (95%)
     </h3>
     <p>[$icd ; $icu]</p>
     <p>Coeff : $coeff </p>
