@@ -53,6 +53,11 @@ Close the terminal and you should get a sucess message.
 > crontab: installing new crontab
 ```
 
+Check that cron is running :
+```
+ps -ef | grep cron
+```
+
 In the above configuration, we have scheduled the script twice. The first cron runs every 1 minute and the second cron also starts at the same time but waits for 30 seconds before execution. So the entire cycle runs every 30 seconds.
 
 # Front-end App
