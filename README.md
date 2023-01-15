@@ -45,7 +45,6 @@ $ crontab –e
 In the crontab terminal edit and write :
 ```
 * * * * *  <PATH_TO_bot.sh>
-* * * * *  sleep 30; <PATH_TO_bot.sh>
 ```
 Close the terminal and you should get a sucess message.
 
@@ -58,7 +57,6 @@ Check that cron is running :
 ps -ef | grep cron
 ```
 
-In the above configuration, we have scheduled the script twice. The first cron runs every 1 minute and the second cron also starts at the same time but waits for 30 seconds before execution. So the entire cycle runs every 30 seconds.
 
 # Front-end App
 Once installed you can setup an NGINX web server to access your front-end app.  
